@@ -12,6 +12,10 @@
           "type": "TRANSIT_DIRECTION"
         }
       ]
+    },
+    {
+      "intent": "HelloWorldIntent",
+      "slots": []
     }
   ]
 }
