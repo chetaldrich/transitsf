@@ -1,0 +1,1 @@
+GetMuniPrediction when is the next {Direction} {Route} coming

@@ -5,11 +5,11 @@
       "slots": [
         {
           "name": "Route",
-          "type": "LIST_OF_ROUTES"
+          "type": "TRANSIT_ROUTE"
         },
         {
           "name": "Direction",
-          "type": "LIST_OF_DIRECTIONS"
+          "type": "TRANSIT_DIRECTION"
         }
       ]
     }
