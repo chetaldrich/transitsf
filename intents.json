@@ -1,0 +1,17 @@
+{
+  "intents": [
+    {
+      "intent": "GetMuniPrediction",
+      "slots": [
+        {
+          "name": "Route",
+          "type": "LIST_OF_ROUTES"
+        },
+        {
+          "name": "Direction",
+          "type": "LIST_OF_DIRECTIONS"
+        }
+      ]
+    }
+  ]
+}
