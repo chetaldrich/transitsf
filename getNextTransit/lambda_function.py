@@ -1,5 +1,5 @@
 """
-This file defines the lambda handler, which builds response based
+This file defines the lambda handler, which builds responses based
 on various intents.
 """
 
