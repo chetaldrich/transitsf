@@ -28,8 +28,10 @@ class NextBusAPIWrapper:
         stop_tag = cls._get_stop_id(location, route, direction)
         request_url = cls._compose_url(
             "predictions", route, stop_tag=stop_tag)
-        # TODO: error handling
-        predictions = json.loads(requests.get(request_url).text)["predictions"]["direction"]
+        response = requests.get(request_url)
+        if response.status_code != 200 or "Error" in json.loads(response.text):
+            raise Exception("NextBus request failed")
+        predictions = json.loads(response.text)["predictions"]["direction"]
 
         all_times = []
         # sometimes this is a dict, sometimes it's not...
@@ -54,14 +56,17 @@ class NextBusAPIWrapper:
         :return: The stop tag (string). We technically use the tag, not the ID
         """
         # get latitude and longitude for the location
-        # TODO: error handling
         user_location = Nominatim().geocode(location)
+        if user_location is None:
+            raise Exception("User's address is invalid")
         user_ll = (user_location.latitude, user_location.longitude, )
 
         # get all appropriate stops for the request
         request_url = cls._compose_url("routeConfig", route)
-        # TODO: error handling
-        correct_route = json.loads(requests.get(request_url).text)['route']
+        response = requests.get(request_url)
+        if response.status_code != 200 or "Error" in json.loads(response.text):
+            raise Exception("NextBus request failed")
+        correct_route = json.loads(response.text)['route']
 
         # get the stops that go in the correct direction
         correct_direction_stops = None
